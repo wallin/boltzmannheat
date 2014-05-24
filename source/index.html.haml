@@ -1,0 +1,10 @@
+%section
+  .container
+    .row
+      .col-sm-5{'ng-controller' => 'SystemCtrl'}
+        = partial 'system'
+      .col-sm-2.text-center.well{'ng-controller' => 'HeatFlowCtrl'}
+        %h5 Heat flow
+        %code{'ng-bind' => 'total | number:4'}
+      .col-sm-5{'ng-controller' => 'SystemCtrl'}
+        = partial 'system'

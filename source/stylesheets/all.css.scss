@@ -1,0 +1,28 @@
+@charset "utf-8";
+@import "bourbon";
+
+.page-header {
+  position: relative;
+  padding: 10px 0;
+  margin: 0;
+  color: #cdbfe3;
+  text-shadow: 0 1px 0 rgba(0,0,0,.1);
+  background-color: #6f5499;
+  @include background-image(linear-gradient(top,#563d7c 0,#6f5499 100%));
+}
+
+section {
+  padding: 30px 0 0;
+}
+
+.tab-content {
+  padding: 20px;
+  height: 300px;
+  overflow: auto;
+}
+
+.chart {
+  margin: 2em 0;
+  width: auto;
+  height: 300px;
+}

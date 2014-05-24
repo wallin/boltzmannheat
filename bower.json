@@ -1,0 +1,14 @@
+{
+  "name": "boltzmannheat",
+  "version": "0.1.0",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "rainbow-viz": "https://github.com/anomal/RainbowVis-JS.git"
+  }
+}

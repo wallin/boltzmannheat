@@ -1,0 +1,82 @@
+-# %h3{'ng-bind' => 'system.name'}
+%tabset
+  %tab
+    %tab-heading E-levels
+    %form.form-horizontal
+      .form-group
+        %label.col-sm-6.control-label Number of particles
+        .col-sm-6
+          %input.form-control{'ng-model' => 'system.params.numParticles', :type => 'number'}
+      .form-group
+        %label.col-sm-6.control-label Energy level type
+        .col-sm-6
+          %select.form-control{'ng-model' => 'system.params.eLevelType', 'ng-options' => 'opt.name for opt in system.options.eLevelTypes'}
+      .form-group{'ng-if' => 'system.params.eLevelType.value == "equidistant" || system.params.eLevelType.value == "sublevels"'}
+        %label.col-sm-6.control-label Distance between energy levels (dE/kb)
+        .col-sm-6
+          %input.form-control{'ng-model' => 'system.params.eDist', :type => 'number'}
+      .form-group{'ng-if' => 'system.params.eLevelType.value == "sublevels"', :type => 'number'}
+        %label.col-sm-6.control-label Number of sublevels:
+        .col-sm-6
+          %input.form-control{'ng-model' => 'system.params.numSubLevels', :type => 'number'}
+      .form-group{'ng-if' => 'system.params.eLevelType.value == "sublevels"'}
+        %label.col-sm-6.control-label Distance between sub levels (dE/kb)
+        .col-sm-6
+          %input.form-control{'ng-model' => 'system.params.subEDist', :type => 'number'}
+  %tab
+    %tab-heading Plot
+    %form.form-horizontal
+      .form-group
+        %label.col-sm-6.control-label Plot relative first level:
+        .col-sm-6
+          %input{:type => 'checkbox', 'ng-model' => 'plotOptions.relative'}
+      .form-group
+        %label.col-sm-6.control-label Plot E-levels:
+        .col-sm-6
+          %input{:type => 'checkbox'}
+      .form-group
+        %label.col-sm-6.control-label y max:
+        .col-sm-6
+          %input.form-control{:type => 'number', 'ng-model' => 'plotOptions.ymax'}
+      .form-group
+        %label.col-sm-6.control-label x max:
+        .col-sm-6
+          %input.form-control{:type => 'number', 'ng-model' => 'plotOptions.xmax'}
+
+  %tab
+    %tab-heading Data
+    %p
+      U/k (particle):
+      %span{'ng-bind' => 'system.result.energyParticle | number: 4'}
+      K
+    %p
+      U (tot):
+      %span{'ng-bind' => 'system.result.energyTotal | number: 4'}
+      kJ
+    %p
+      U (molar):
+      %span{'ng-bind' => 'system.result.energyMolar | number: 4'}
+      kJ/mol
+    %p
+      S/k (particle):
+      %span{'ng-bind' => 'system.result.entropyParticle | number: 4'}
+      K
+    %p
+      S (tot):
+      %span{'ng-bind' => 'system.result.entropyTotal | number: 4'}
+      J/K
+    %p
+      S (molar):
+      %span{'ng-bind' => 'system.result.entropyMolar | number: 4'}
+      J/(K mol)
+    %p
+      q:
+      %span{'ng-bind' => 'system.result.partitionFun | number: 4'}
+
+.form-horizontal
+  %label.col-sm-6.control-label Temperature
+  .input-group.col-sm-6
+    %input.form-control{'ng-model' => 'system.params.temperature', :type => 'number'}
+    %span.input-group-addon K
+
+.chart{'chart-data' => 'system.result', 'chart-params' => 'system.params', 'chart-options' => 'plotOptions'}
