@@ -1,14 +1,20 @@
 @charset "utf-8";
 @import "bourbon";
 
+$primary-color: #FF5E5D;
+
 .page-header {
   position: relative;
   padding: 10px 0;
   margin: 0;
-  color: #cdbfe3;
+  color: lighten($primary-color, 30%);
   text-shadow: 0 1px 0 rgba(0,0,0,.1);
-  background-color: #6f5499;
-  @include background-image(linear-gradient(top,#563d7c 0,#6f5499 100%));
+  background-color: $primary-color;
+  @include background-image(linear-gradient(top,darken($primary-color, 5%) 0,$primary-color 100%));
+}
+
+.nav-tabs > li > a {
+  cursor: pointer;
 }
 
 section {
