@@ -110,40 +110,34 @@
 </tab>
 <tab>
 <tab-heading>Data</tab-heading>
-<p>
-U/k (particle):
-<span ng-bind='system.result.energyParticle | number: 4'></span>
-K
-</p>
-<p>
-U (tot):
-<span ng-bind='system.result.energyTotal | number: 4'></span>
-kJ
-</p>
-<p>
-U (molar):
-<span ng-bind='system.result.energyMolar | number: 4'></span>
-kJ/mol
-</p>
-<p>
-S/k (particle):
-<span ng-bind='system.result.entropyParticle | number: 4'></span>
-K
-</p>
-<p>
-S (tot):
-<span ng-bind='system.result.entropyTotal | number: 4'></span>
-J/K
-</p>
-<p>
-S (molar):
-<span ng-bind='system.result.entropyMolar | number: 4'></span>
-J/(K mol)
-</p>
-<p>
-q:
-<span ng-bind='system.result.partitionFun | number: 4'></span>
-</p>
+<dl class='dl-horizontal'>
+<dt>U/k (particle):</dt>
+<dd>
+{{ system.result.energyParticle | number: 4 }} K
+</dd>
+<dt>U (tot):</dt>
+<dd>
+{{ system.result.energyTotal | number: 4 }} kJ
+</dd>
+<dt>U (molar):</dt>
+<dd>
+{{ system.result.energyMolar | number: 4 }} kJ/mol
+</dd>
+<dt>S/k (particle):</dt>
+<dd>
+{{ system.result.entropyParticle | number: 4 }} K
+</dd>
+<dt>S (tot):</dt>
+<dd>
+{{ system.result.entropyTotal | number: 4 }} J/K
+</dd>
+<dt>S (molar):</dt>
+<dd>
+{{ system.result.entropyMolar | number: 4 }} J/(K mol)
+</dd>
+<dt>q:</dt>
+<dd ng-bind='system.result.partitionFun | number: 4'></dd>
+</dl>
 </tab>
 </tabset>
 <div class='form-horizontal'>
@@ -228,40 +222,34 @@ q:
 </tab>
 <tab>
 <tab-heading>Data</tab-heading>
-<p>
-U/k (particle):
-<span ng-bind='system.result.energyParticle | number: 4'></span>
-K
-</p>
-<p>
-U (tot):
-<span ng-bind='system.result.energyTotal | number: 4'></span>
-kJ
-</p>
-<p>
-U (molar):
-<span ng-bind='system.result.energyMolar | number: 4'></span>
-kJ/mol
-</p>
-<p>
-S/k (particle):
-<span ng-bind='system.result.entropyParticle | number: 4'></span>
-K
-</p>
-<p>
-S (tot):
-<span ng-bind='system.result.entropyTotal | number: 4'></span>
-J/K
-</p>
-<p>
-S (molar):
-<span ng-bind='system.result.entropyMolar | number: 4'></span>
-J/(K mol)
-</p>
-<p>
-q:
-<span ng-bind='system.result.partitionFun | number: 4'></span>
-</p>
+<dl class='dl-horizontal'>
+<dt>U/k (particle):</dt>
+<dd>
+{{ system.result.energyParticle | number: 4 }} K
+</dd>
+<dt>U (tot):</dt>
+<dd>
+{{ system.result.energyTotal | number: 4 }} kJ
+</dd>
+<dt>U (molar):</dt>
+<dd>
+{{ system.result.energyMolar | number: 4 }} kJ/mol
+</dd>
+<dt>S/k (particle):</dt>
+<dd>
+{{ system.result.entropyParticle | number: 4 }} K
+</dd>
+<dt>S (tot):</dt>
+<dd>
+{{ system.result.entropyTotal | number: 4 }} J/K
+</dd>
+<dt>S (molar):</dt>
+<dd>
+{{ system.result.entropyMolar | number: 4 }} J/(K mol)
+</dd>
+<dt>q:</dt>
+<dd ng-bind='system.result.partitionFun | number: 4'></dd>
+</dl>
 </tab>
 </tabset>
 <div class='form-horizontal'>
