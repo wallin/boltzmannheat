@@ -3,7 +3,7 @@ angular.module('bm.system', ['bm.distribution'])
   '$rootScope'
   'Distribution'
   ($rootScope, Distribution) ->
-    systems = []
+    systems = {}
 
     class System
       options:
@@ -14,7 +14,6 @@ angular.module('bm.system', ['bm.distribution'])
         ]
 
       constructor: ->
-        @name = "System #{"ABCD".charAt(systems.length)}"
         @params =
           numParticles: 1
           eLevelType: @options.eLevelTypes[0]
@@ -28,20 +27,18 @@ angular.module('bm.system', ['bm.distribution'])
         @result = Distribution.boltzmann(@params)
         $rootScope.$broadcast 'system.update'
 
-    create: (params) ->
-      system = new System()
-      systems.push(system)
-      return system
+    findOrCreate: (name) ->
+      systems[name] ?= new System(name)
+      return systems[name]
 
     all: systems
 ])
 .controller('SystemCtrl', [
+  '$attrs'
   '$scope',
   'System'
-  ($scope, System) ->
-    $scope.data = []
-
-    $scope.system = System.create()
+  ($attrs, $scope, System) ->
+    $scope.system = System.findOrCreate($attrs['systemName'])
 
     $scope.plotOptions =
       relative: no
@@ -58,8 +55,8 @@ angular.module('bm.system', ['bm.distribution'])
   'System'
   ($scope, System) ->
     setTotal = (val)->
-      $scope.total = System.all.reduce (prev, current) ->
-        prev.result.entropyTotal + current.result.entropyTotal
+      $scope.total = 0
+      $scope.total += s.result.entropyTotal for name, s of System.all
 
     $scope.$on 'system.update', setTotal
 
