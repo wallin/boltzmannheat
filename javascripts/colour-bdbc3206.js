@@ -1,0 +1,1 @@
+(function(){angular.module("bm.colour",[]).service("Colour",[function(){var F,e,n,r,u,o,t;return u=new Rainbow,F="#0FDBFF",e="#0FFF1B",n="#FFEB0F",r="#FF170F",t=0,o=500,u.setSpectrum(F,n,r),u.setNumberRange(t,o),u}])}).call(this);
