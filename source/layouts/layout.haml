@@ -39,10 +39,13 @@
           .col-sm-12
             %h1 Boltzmannheat
             %p.lead a thermodynamics web lab
-    = yield
+    %section{'ui-view' => true}
 
+  = partial 'introduction'
+  = partial 'lab'
   = javascript_include_tag "//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"
   = javascript_include_tag "//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.16/angular.min.js"
   = javascript_include_tag "//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.10.0/ui-bootstrap-tpls.min.js"
+  = javascript_include_tag "//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.10/angular-ui-router.min.js"
   = javascript_include_tag "//cdnjs.cloudflare.com/ajax/libs/flot/0.8.2/jquery.flot.min.js"
   = javascript_include_tag  :all
