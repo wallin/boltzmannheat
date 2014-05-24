@@ -45,33 +45,33 @@
 
   %tab
     %tab-heading Data
-    %p
-      U/k (particle):
-      %span{'ng-bind' => 'system.result.energyParticle | number: 4'}
-      K
-    %p
-      U (tot):
-      %span{'ng-bind' => 'system.result.energyTotal | number: 4'}
-      kJ
-    %p
-      U (molar):
-      %span{'ng-bind' => 'system.result.energyMolar | number: 4'}
-      kJ/mol
-    %p
-      S/k (particle):
-      %span{'ng-bind' => 'system.result.entropyParticle | number: 4'}
-      K
-    %p
-      S (tot):
-      %span{'ng-bind' => 'system.result.entropyTotal | number: 4'}
-      J/K
-    %p
-      S (molar):
-      %span{'ng-bind' => 'system.result.entropyMolar | number: 4'}
-      J/(K mol)
-    %p
-      q:
-      %span{'ng-bind' => 'system.result.partitionFun | number: 4'}
+    %dl.dl-horizontal
+      %dt U/k (particle):
+      %dd
+        {{ system.result.energyParticle | number: 4 }} K
+
+      %dt U (tot):
+      %dd
+        {{ system.result.energyTotal | number: 4 }} kJ
+
+      %dt U (molar):
+      %dd
+        {{ system.result.energyMolar | number: 4 }} kJ/mol
+
+      %dt S/k (particle):
+      %dd
+        {{ system.result.entropyParticle | number: 4 }} K
+
+      %dt S (tot):
+      %dd
+        {{ system.result.entropyTotal | number: 4 }} J/K
+
+      %dt S (molar):
+      %dd
+        {{ system.result.entropyMolar | number: 4 }} J/(K mol)
+
+      %dt q:
+      %dd{'ng-bind' => 'system.result.partitionFun | number: 4'}
 
 .form-horizontal
   %label.col-sm-6.control-label Temperature
