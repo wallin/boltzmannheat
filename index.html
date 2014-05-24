@@ -39,10 +39,22 @@
 </div>
 </div>
 </header>
-<section>
+<section ui-view></section>
+</body>
+<script id='introduction.html' type='text/ng-template'>
 <div class='container'>
 <div class='row'>
-<div class='col-sm-5' ng-controller='SystemCtrl'>
+<div class='col-sm-12'>
+<h1>Welcome</h1>
+</div>
+</div>
+</div>
+</script>
+
+<script id='lab.html' type='text/ng-template'>
+<div class='container'>
+<div class='row'>
+<div class='col-sm-5' ng-controller='SystemCtrl' system-name='System A'>
 <tabset>
 <tab>
 <tab-heading>E-levels</tab-heading>
@@ -154,7 +166,7 @@
 <h5>Heat flow</h5>
 <code ng-bind='total | number:4'></code>
 </div>
-<div class='col-sm-5' ng-controller='SystemCtrl'>
+<div class='col-sm-5' ng-controller='SystemCtrl' system-name='System B'>
 <tabset>
 <tab>
 <tab-heading>E-levels</tab-heading>
@@ -264,12 +276,12 @@
 </div>
 </div>
 </div>
-</section>
+</script>
 
-</body>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js" type="text/javascript"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.16/angular.min.js" type="text/javascript"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.10.0/ui-bootstrap-tpls.min.js" type="text/javascript"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.10/angular-ui-router.min.js" type="text/javascript"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/flot/0.8.2/jquery.flot.min.js" type="text/javascript"></script>
-<script src="javascripts/all-0433e076.js" type="text/javascript"></script>
+<script src="javascripts/all-ce81d07c.js" type="text/javascript"></script>
 </html>
