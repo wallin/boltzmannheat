@@ -5,6 +5,10 @@
         = partial 'system'
       .col-sm-2.text-center.well{'ng-controller' => 'HeatFlowCtrl'}
         %h5 Heat flow
+        %form.form-inline
+          %button.btn.btn-primary.btn-sm{'ng-click' => 'transfer("System B", "System A")'} &laquo;
+          %input.form-control.input-sm{:type => 'number', 'ng-model' => 'amount', :step => '0.05', :min => '0.05', :style => 'width: 60px;'}
+          %button.btn.btn-primary.btn-sm{'ng-click' => 'transfer("System A", "System B")'} &raquo;
         %code{'ng-bind' => 'total | number:4'}
       .col-sm-5{'ng-controller' => 'SystemCtrl', 'system-name' => 'System B'}
         = partial 'system'

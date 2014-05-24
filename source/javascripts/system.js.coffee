@@ -27,6 +27,16 @@ angular.module('bm.system', ['bm.distribution'])
         @result = Distribution.boltzmann(@params)
         $rootScope.$broadcast 'system.update'
 
+      addEnergy: (dq) ->
+        throw "Not enough energy to give" if dq + @result.energyTotal < 0
+        @result.energyTotal += dq
+        Tguess = @params.temperature + (dq * 1000) / (8.3145 * @params.numParticles)
+        if Tguess > 0
+          @params.temperature = Tguess
+
+        @params.temperature = Distribution.newT(@params.temperature, @result)
+        @update()
+
     findOrCreate: (name) ->
       systems[name] ?= new System(name)
       return systems[name]
@@ -59,5 +69,14 @@ angular.module('bm.system', ['bm.distribution'])
       $scope.total += s.result.entropyTotal for name, s of System.all
 
     $scope.$on 'system.update', setTotal
+
+    $scope.amount = 0.05
+
+    $scope.transfer = (from, to) ->
+      system1 = System.all[from]
+      system2 = System.all[to]
+      system1.addEnergy(-1*$scope.amount)
+      system2.addEnergy($scope.amount)
+
 
 ])

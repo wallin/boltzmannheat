@@ -6,7 +6,7 @@
       .form-group
         %label.col-sm-6.control-label Number of particles
         .col-sm-6
-          %input.form-control{'ng-model' => 'system.params.numParticles', :type => 'number'}
+          %input.form-control{'ng-model' => 'system.params.numParticles', :type => 'number', :min => '0'}
       .form-group
         %label.col-sm-6.control-label Energy level type
         .col-sm-6
@@ -14,15 +14,15 @@
       .form-group{'ng-if' => 'system.params.eLevelType.value == "equidistant" || system.params.eLevelType.value == "sublevels"'}
         %label.col-sm-6.control-label Distance between energy levels (dE/kb)
         .col-sm-6
-          %input.form-control{'ng-model' => 'system.params.eDist', :type => 'number'}
-      .form-group{'ng-if' => 'system.params.eLevelType.value == "sublevels"', :type => 'number'}
+          %input.form-control{'ng-model' => 'system.params.eDist', :type => 'number', :min => '0'}
+      .form-group{'ng-if' => 'system.params.eLevelType.value == "sublevels"'}
         %label.col-sm-6.control-label Number of sublevels:
         .col-sm-6
-          %input.form-control{'ng-model' => 'system.params.numSubLevels', :type => 'number'}
+          %input.form-control{'ng-model' => 'system.params.numSubLevels', :type => 'number', :min => '0'}
       .form-group{'ng-if' => 'system.params.eLevelType.value == "sublevels"'}
         %label.col-sm-6.control-label Distance between sub levels (dE/kb)
         .col-sm-6
-          %input.form-control{'ng-model' => 'system.params.subEDist', :type => 'number'}
+          %input.form-control{'ng-model' => 'system.params.subEDist', :type => 'number', :min => '0'}
   %tab
     %tab-heading Plot
     %form.form-horizontal
@@ -37,11 +37,11 @@
       .form-group
         %label.col-sm-6.control-label y max:
         .col-sm-6
-          %input.form-control{:type => 'number', 'ng-model' => 'plotOptions.ymax'}
+          %input.form-control{:type => 'number', 'ng-model' => 'plotOptions.ymax', :min => '0'}
       .form-group
         %label.col-sm-6.control-label x max:
         .col-sm-6
-          %input.form-control{:type => 'number', 'ng-model' => 'plotOptions.xmax'}
+          %input.form-control{:type => 'number', 'ng-model' => 'plotOptions.xmax', :min => '0'}
 
   %tab
     %tab-heading Data

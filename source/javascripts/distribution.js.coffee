@@ -34,36 +34,20 @@ angular.module('bm.distribution', [])
       energyLevelSubDiff: dESub
     }
 
-  self.boltzmann = (params, opts = {}) ->
+  self.boltzmann = (params) ->
     EiSystem = self.energyLevels(params)
-    p = []
-    pSum = 0
     T = params.temperature
     energyParticle = 0
     entropyParticle = 0
     numParticles = params.numParticles
 
-    if T is 0
-      p.push([1, 0])
-      pSum = 1
-      p.push [0, level] for level in EiSystem.energyLevels
-    else
-      for level, idx in EiSystem.energyLevels
-        p.push([
-          EiSystem.degeneracy[idx] * Math.exp(-EiSystem.energyLevels[idx] / T),
-          level
-        ])
-        pSum += p[idx][0]
+    [p, pSum] = self.partition(T, EiSystem)
 
     for item, idx in p
       item[0] /= pSum
       if item[0] > 0
         entropyParticle += -item[0] * Math.log(item[0])
         energyParticle  += (item[0] * EiSystem.energyLevels[idx])
-
-    if opts.plotRel
-      normalization = p[0][0]
-      item[0] /= normalization for item in p when item[0] > 0
 
     CONST = 8.3145
     return angular.extend({}, EiSystem, {
@@ -78,6 +62,62 @@ angular.module('bm.distribution', [])
       entropyMolar: entropyParticle * CONST
       temperature: T
     })
+
+  self.partition = (T, system) ->
+    p = []
+    pSum = 0
+    if T is 0
+      p.push([1, 0])
+      pSum = 1
+      p.push [0, level] for level in system.energyLevels
+    else
+      for level, idx in system.energyLevels
+        p.push([
+          system.degeneracy[idx] * Math.exp(-level / T),
+          level
+        ])
+        pSum += p[idx][0]
+
+    [p, pSum]
+
+  self.newEdiff = (T, system) ->
+    [p, pSum] = self.partition(T, system)
+
+    energyParticle = 0
+
+    for item, idx in p
+      item[0] /= pSum
+      energyParticle += (item[0] * system.energyLevels[idx])
+
+    return system.energyTotal - ( (energyParticle * 8.3145 * system.numParticles) / 1000)
+
+  self.newT = (T, system) ->
+    Ta = 1.5 * T;
+    Tb = 0.5 * T;
+    Tc = (Ta + Tb) /2;
+    fa = self.newEdiff(Tb, system);
+    fb = self.newEdiff(Ta, system);
+    fc = self.newEdiff(Tc, system);
+
+    unless fa > 0 and fb < 0
+      throw "bug"
+
+    counter = 0
+    maxIt = 1000;
+
+    while Math.abs(fc) > 0.000001
+      counter++
+      if fc > 0
+        Tb = Tc
+      else
+        Ta = Tc
+      Tc = (Ta + Tb) / 2
+
+      fc = self.newEdiff(Tc, system)
+
+      throw "timeout" if counter is maxIt
+
+    return Math.round(Tc)
 
   self
 ])
